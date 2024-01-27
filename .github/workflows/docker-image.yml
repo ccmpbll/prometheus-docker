@@ -19,7 +19,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASS }}
       
     - name: Build and Push the Docker Image
-      uses: docker/build-push-action@main
+      uses: docker/build-push-action@master
       with:
         context: .
         push: true
