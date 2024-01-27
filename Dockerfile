@@ -8,9 +8,9 @@ ENV RETENTION_TIME=
 ENV UID=
 ENV GID=
 
-USER ${UID:-nobody}:${GID:-nobody}
-
 RUN chown -R ${UID:-nobody}:${GID:-nobody} /etc/prometheus /prometheus
+
+USER ${UID:-nobody}:${GID:-nobody}
 
 EXPOSE 9090
 
