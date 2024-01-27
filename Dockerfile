@@ -10,6 +10,8 @@ ENV GID=
 
 USER ${UID:-nobody}:${GID:-nobody}
 
+RUN chown -R ${UID:-nobody}:${GID:-nobody} /etc/prometheus /prometheus
+
 EXPOSE 9090
 
 ENTRYPOINT exec /bin/prometheus \
