@@ -4,7 +4,7 @@ FROM prom/prometheus:latest
 LABEL Name=prometheus-docker
 LABEL maintainer="Chris Campbell"
 
-ENV RETENTION_TIME
+ENV RETENTION_TIME=
 
 EXPOSE 9090
 
