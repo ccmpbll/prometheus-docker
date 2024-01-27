@@ -1,6 +1,6 @@
 #Using the official prometheus docker image as the base image.
 #Wanted the ability to set the retention time and any other flags I might want to use later on.
-FROM docker.io/prom/prometheus:latest
+FROM prom/prometheus:latest
 LABEL Name=prometheus-docker
 LABEL maintainer="Chris Campbell"
 
