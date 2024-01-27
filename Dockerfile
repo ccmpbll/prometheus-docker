@@ -8,7 +8,7 @@ ENV RETENTION_TIME=
 
 EXPOSE 9090
 
-CMD exec /bin/prometheus \
+ENTRYPOINT exec /bin/prometheus \
 --config.file=/etc/prometheus/prometheus.yml \
 --storage.tsdb.path=/prometheus \
 --web.console.libraries=/usr/share/prometheus/console_libraries \
