@@ -5,6 +5,10 @@ LABEL Name=prometheus-docker
 LABEL maintainer="Chris Campbell"
 
 ENV RETENTION_TIME=
+ENV UID=
+ENV GID=
+
+USER ${UID:-nobody}:${GID:-nobody}
 
 EXPOSE 9090
 
