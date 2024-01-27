@@ -2,26 +2,25 @@ name: docker-image-build
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
+    branches:
+      - 'main'
+      
 jobs:
-  build:
+  docker:
     runs-on: ubuntu-latest
-
     steps:
     - name: Check out the repo
       uses: actions/checkout@main
     
     - name: Log into Docker Hub
-      env: 
-        user: ${{secrets.DOCKER_USER}}
-        pass: ${{secrets.DOCKER_PASS}}
-      run: docker login -u $user -p $pass
+      uses: docker/login-action@main
+      with: 
+        username: ${{ secrets.DOCKER_USER }}
+        password: ${{ secrets.DOCKER_PASS }}
       
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ${{secrets.DOCKER_USER}}/prometheus-docker:latest
-      
-    - name: Docker Push
-      run: docker push ${{secrets.DOCKER_USER}}/prometheus-docker:latest
+    - name: Build and Push the Docker Image
+      uses: docker/build-push-action@main
+      with:
+        context: .
+        push: true
+        tags: ccmpbll/prometheus-docker:latest
