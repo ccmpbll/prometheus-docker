@@ -1,5 +1,3 @@
-#Using the official prometheus docker image as the base image.
-#Wanted the ability to set the retention time and any other flags I might want to use later on.
 FROM debian:latest
 LABEL Name=prometheus-docker
 LABEL maintainer="Chris Campbell"
@@ -21,12 +19,13 @@ RUN cp -r prometheus-${PROMETHEUS_VERSION}.linux-amd64/consoles/ /usr/share/prom
 RUN cp prometheus-${PROMETHEUS_VERSION}.linux-amd64/LICENSE /LICENSE
 RUN cp prometheus-${PROMETHEUS_VERSION}.linux-amd64/NOTICE /NOTICE
 RUN ln -s /usr/share/prometheus/console_libraries /usr/share/prometheus/consoles/ /etc/prometheus/
+RUN rm -rf prometheus-${PROMETHEUS_VERSION}.linux-amd64*
 
 ENV RETENTION_TIME=
-#ENV UID=
-#ENV GID=
-#RUN chown -R ${UID:-nobody}:${GID:-nobody} /etc/prometheus /prometheus
-#USER ${UID:-nobody}:${GID:-nobody}
+ENV UID=
+ENV GID=
+RUN chown -R ${UID:-nobody}:${GID:-users} /etc/prometheus /prometheus
+USER ${UID:-nobody}:${GID:-nobody}
 
 EXPOSE 9090
 
