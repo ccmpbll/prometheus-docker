@@ -24,8 +24,8 @@ RUN rm -rf prometheus-${PROMETHEUS_VERSION}.linux-amd64*
 ENV RETENTION_TIME=
 ENV UID=
 ENV GID=
-RUN chown -R ${UID:-nobody}:${GID:-users} /etc/prometheus /prometheus
-USER ${UID:-nobody}:${GID:-nobody}
+RUN chown -R ${UID:-99}:${GID:-100} /etc/prometheus /prometheus
+USER ${UID:-99}:${GID:-100}
 
 EXPOSE 9090
 
