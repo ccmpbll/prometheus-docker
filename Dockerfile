@@ -1,4 +1,4 @@
-FROM debian:latest
+FROM debian:bookwork-slim
 LABEL Name=prometheus-docker
 LABEL maintainer="Chris Campbell"
 
