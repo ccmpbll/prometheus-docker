@@ -1,13 +1,12 @@
-FROM alpine:latest
+FROM debian:bookworm-slim
 LABEL Name=prometheus-docker
 LABEL maintainer="Chris Campbell"
 
 ARG PROMETHEUS_VERSION="2.49.1"
 
-RUN apk --no-cache --no-progress update
-RUN apk --no-cache --no-progress upgrade
-RUN apk --no-cache --no-progress add wget
-RUN rm -rf /tmp/* /var/tmp/*
+RUN apt update && apt full-upgrade -y
+RUN apt install -y wget
+RUN apt clean all -y && apt autoremove -y
 
 RUN wget https://github.com/prometheus/prometheus/releases/download/v${PROMETHEUS_VERSION}/prometheus-${PROMETHEUS_VERSION}.linux-amd64.tar.gz
 RUN tar zxvf prometheus-${PROMETHEUS_VERSION}.linux-amd64.tar.gz
