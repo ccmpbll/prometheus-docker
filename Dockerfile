@@ -6,7 +6,7 @@ ARG PROMETHEUS_VERSION="2.49.1"
 
 RUN apt update && apt full-upgrade -y
 RUN apt install -y wget
-RUN apt clean all -y && apt autoremove -y
+RUN apt clean && apt autoremove -y
 
 RUN wget https://github.com/prometheus/prometheus/releases/download/v${PROMETHEUS_VERSION}/prometheus-${PROMETHEUS_VERSION}.linux-amd64.tar.gz
 RUN tar zxvf prometheus-${PROMETHEUS_VERSION}.linux-amd64.tar.gz
