@@ -2,7 +2,7 @@ FROM debian:bookworm-slim
 LABEL Name=prometheus-docker
 LABEL maintainer="Chris Campbell"
 
-ARG PROMETHEUS_VERSION="2.52.0"
+ARG PROMETHEUS_VERSION="2.53.1"
 
 RUN apt update && apt full-upgrade -y
 RUN apt install -y wget
